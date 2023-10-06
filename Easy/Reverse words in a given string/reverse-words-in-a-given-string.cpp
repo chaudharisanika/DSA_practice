@@ -12,18 +12,32 @@ class Solution
     { 
         // code here 
         string ans="";
-        string temp="";
+        string temp = "";
+        stack<string>st;
         
-        for(int i=0; i<S.length(); i++){
-            if(S[i]=='.'){
-                ans=temp+ans;
-                ans=S[i]+ans;
+        for(int i=0; i<S.size(); i++){
+            if(S[i]!='.'){
+                temp+=S[i];
+            }
+            else {
+                st.push(temp);
                 temp="";
             }
-            else temp+=S[i];
         }
-        ans=temp+ans;      //for last word
-        return ans;
+       st.push(temp);
+       while(st.size()>0)
+       {
+           if(st.size()>1)
+           {
+               ans+=st.top()+'.';
+           }
+           else
+           {
+               ans+=st.top();
+           }
+           st.pop();
+       }
+       return ans;
     } 
 };
 
